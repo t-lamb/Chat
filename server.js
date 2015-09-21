@@ -36,7 +36,7 @@ io.sockets.on('connection',
 		socket.on('chatmessage', function(data){
 			// data comes in when it is sent, including objects
 			console.log("Received: 'chatmessage' " + data);
-			// send it to all the clients
+			// send it to all the clients including self
 			socket.broadcast.emit('chatmessage', data);
 			console.log("Received: 'chatmessage' " + data);
 		});
