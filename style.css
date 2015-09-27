@@ -60,11 +60,13 @@ teal: #2dc0bd;
 
 body {
 	font-family: 'Cutive Mono';
-	font-size: 16px;
+	font-size: 1.25rem;
 	box-sizing: border-box;
+	background-color: #111111;
 }
 h1 {
 	font-size: 2.5rem;
+	text-shadow: 2px 2px #111111;
 }
 p {
 	padding: 0 0 2rem 0;
@@ -76,8 +78,8 @@ header {
 	z-index: 10;
 	height: 3 rem;
 	width: 100%;
-	color: #393952;
-	border-bottom: .5rem solid #2dc0bd;
+	color: #4762B2;
+	background-color: #393952;
 	margin: 0 auto;
 	padding: 0 3.5%;
 }
@@ -85,6 +87,7 @@ header {
 	padding: 5rem 4%;
 	max-width: 1024;
 	margin: 0 auto;
+	color: #ffffff;
 }
 .foot{
 	position: fixed;
@@ -114,6 +117,7 @@ input {
 	background-color: #4762B2;
 	font-size: 1.25rem;
 	width: 21%;
+	
 }
 .button:hover {
 	background-color: #2dc0bd;
