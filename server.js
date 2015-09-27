@@ -1,25 +1,42 @@
 // HTTP Portion
 var http = require('http');
 var fs = require('fs'); //use filesystem module
+var url = require('url');
+
+function requestHandler(req, res) {
+	console.log("The URL is: " + req.url);
+
+	var parsedUrl = url.parse(req.url);
+	console.log("They asked for " + parsedUrl.pathname);
+
+	var path = parsedUrl.pathname;
+	if (path == "/") {
+		path = "index.html";
+		console.log("index!")
+	}
+
+	// read index.html
+	fs.readFile(__dirname + '/' + path, 
+		// callback function for reading
+
+		function (err, fileContents) {
+			// error handling
+			console.log(__dirname + '/' + path);
+			if (err) {
+				res.writeHead(500);
+				return res.end('Error loading ' + req.url);
+			}
+			res.writeHead(200);
+			res.end(fileContents);	
+		}
+	);
+	console.log("Got a request " + req.url);
+}
+
 var httpServer = http.createServer(requestHandler);
 httpServer.listen(8080);
 
-function requestHandler(req, res) {
-	// read index.html
-	fs.readFile(__dirname + '/index.html', 
-		// callback function for reading
-		function (err, data) {
-			// error handling
-			if (err) {
-				res.writeHead(500);
-				return res.end('Error loading canvas_socket.html');
-			} else {
-				res.writeHead(200);
-				res.end(data);
-			}
-		}
-	);
-}
+console.log("Server listening on port 8080");
 
 // WebSocket Portion
 // WebSockets work with the HTTP httpServer
@@ -37,7 +54,7 @@ io.sockets.on('connection',
 			// data comes in when it is sent, including objects
 			console.log("Received: 'chatmessage' " + data);
 			// send it to all the clients including self
-			socket.broadcast.emit('chatmessage', data);
+			socket.emit('chatmessage', data);
 			console.log("Received: 'chatmessage' " + data);
 		});
 
