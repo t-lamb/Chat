@@ -14,7 +14,7 @@
 		// Receive from any event
 		socket.on('chatmessage', function(data){
 			console.log(data);
-			document.getElementById('messages').innerHTML = "" + data + "" + document.getElementById('messages').innerHTML;			
+			document.getElementById('messages').innerHTML = document.getElementById("messages").innerHTML + "<br />" + data + "<p style='font-size:1rem;opacity: 0.5;'>" + data + "</p><p style='font-size:.5rem;opacity: 0.25;'>" + data + "</p>";			
 		});
 
 		var sendmessage = function(message) {
@@ -31,6 +31,7 @@
 	</header>
 	<div id="messages" class="messages">
 		Welcome! You are in a cave.
+		<br/>
 	</div>
 	<div class="foot">
 		<input type="text" id="message" name="message" class="inputbox">
